@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        h4 {
+            color: #34495e;
+            margin: 5px 0;
+        }
+        p {
+            color: #7f8c8d;
+            margin: 5px 0;
+        }
+        input[type="number"] {
+            padding: 8px;
+            font-size: 1em;
+            width: 100px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            margin: 10px 0;
+            outline: none;
+        }
+        input[type="number"]:focus {
+            border-color: #2980b9;
+            box-shadow: 0 0 5px rgba(41, 128, 185, 0.3);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #resultMessage {
+            color: #e74c3c;
+            font-size: 1.2em;
+            margin: 15px 0;
+            min-height: 1.5em; /* Prevents layout shift */
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome..!</h1>
+    <h4>Guess a random number</h4>
+    <p>number between 1-10:</p>
+    <input type="number" id="userGuess" min="1" max="10">
+    <button onclick="checkGuess()">check</button>
+    <h3 id="resultMessage"></h3>
+    <button onclick="resetgame()">Play again</button>
+
+    <script>
+        let randomNumber = Math.floor(Math.random() * 10) + 1;
+        function checkGuess() {
+            let Guess = parseInt(document.getElementById("userGuess").value);
+            if (randomNumber == Guess) {
+                document.getElementById("resultMessage").textContent = "🎉wooow...! correct , You made it";
+            } else if (Guess > randomNumber) {
+                document.getElementById("resultMessage").textContent = "tooooo high yar :) try again";
+            } else if (Guess < randomNumber) {
+                document.getElementById("resultMessage").textContent = "oh god! your answer is very low :( keep doing.";
+            } else {
+                document.getElementById("resultMessage").textContent = "Please enter the above instructed number";
+            }
+        }
+        function resetgame() {
+            document.getElementById("userGuess").value = "";
+            document.getElementById("resultMessage").textContent = "";
+            randomNumber = Math.floor(Math.random() * 10) + 1; 
+        }
+</script>
+</body>
+</html>
